@@ -1,0 +1,8 @@
+<% @teams.each do |team| %>
+  <%= link_to team_path(team) do %>
+    <div>
+      <h3><%= team.name %></h3>
+      <img src="<%= team.logo %>"/>
+    </div>
+  <% end %>
+<% end %>
