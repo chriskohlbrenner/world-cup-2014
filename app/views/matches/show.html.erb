@@ -1,9 +1,37 @@
-<div>
-<h3>Next match:</h3>
 <% home_team = @match.teams[0] %>
 <% away_team = @match.teams[1] %>
-<h4><%= link_to home_team.name, team_path(home_team) %> vs. <%= link_to away_team.name, team_path(away_team) %></h4>
-<img src="<%= home_team.logo %>"/><img src="<%= away_team.logo %>"/>
-<br>
-<strong><%= @match.status %></strong> | <%= link_to @match.display_time, match_path(@match) %>
+<% match = @match %>
+<div class="col-md-10">
+<h3><%= link_to match.display_time, match_path(match) %> (<%= match.status %>)</h3>
+<%= match.venue %>
+<p>
+<% if match.winner? %>
+<%= match.winner.name %> defeats <%= match.loser.name %>, <%= match.home_score %> - <%= match.away_score %>
+<% end %>
+</p>
+
+  <%= link_to team_path(home_team) do %>
+  <div class="col-md-4 team-block">
+        <h3><%= home_team.name %></h3>
+        <img src="<%= home_team.logo %>"/>
+  </div>
+  <% end %>
+  <div class="col-md-2 vs">
+    <br><br><br><br>
+    <p>vs.</p>
+  </div>
+
+  <%= link_to team_path(away_team) do %>
+  <div class="col-md-4 team-block">
+        <h3><%= away_team.name %></h3>
+        <img src="<%= away_team.logo %>"/>
+  </div>
+
+  <% end %>
+
+  <div class="col-md-10">
+  <br><br>
+    <h4>Game Stats:</h4>
+      N/A
+  </div>
 </div>

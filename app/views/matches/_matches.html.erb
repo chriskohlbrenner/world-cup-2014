@@ -4,6 +4,7 @@
 
 
 <div class="col-md-10">
+<div class="hr"></div>
 <h3><%= link_to match.display_time, match_path(match) %> (<%= match.status %>)</h3>
 <p>
 <% if match.winner? %>
@@ -28,7 +29,6 @@
         <img src="<%= away_team.logo %>"/>
   </div>
   <% end %>
+
 </div>
-
-
 <% end %>
