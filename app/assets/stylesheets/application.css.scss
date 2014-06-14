@@ -25,7 +25,7 @@ body {
   font-family: "Ubuntu", sans-serif;
   padding-top: 70px;
   padding-bottom: 30px;
-  background-color: #67E667;
+  background-color: #27ae60;
 }
 
 .theme-dropdown .dropdown-menu {
@@ -39,16 +39,16 @@ body {
 }
 
 .main-content {
-  color: #015666;
+  color: #f8f8f8;
   padding-left: 50px;
 }
 
 .main-content a {
-  color: #007D1C;
+  color: #f1c40f;
 }
 
 .main-content a:hover {
-  color: #24913C;
+  color: #fed109;
 }
 
 .main-content p {
@@ -59,15 +59,12 @@ body {
   opacity: 0.7;
 }
 
-.vs {
-  // text-align: center;
+.team-block img {
+  height: 80px;
 }
 
-div.hr {
-  background: white  no-repeat scroll center;
-  margin-top: 50px;
-  width: 100%;
-  height: 2px;
+.vs {
+  // text-align: center;
 }
 
 .left {
@@ -96,4 +93,8 @@ div.hr {
   text-align: center;
   padding-top: 15px;
   padding-bottom: 10px;
+}
+
+.footer a {
+  color: #2980b9;
 }
