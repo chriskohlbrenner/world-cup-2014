@@ -18,11 +18,14 @@
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
  */
 @import "bootstrap";
+@import "semantic-ui";
 /* Some Style from the Bootstrap Default Theme */
+
 body {
+  font-family: "Ubuntu", sans-serif;
   padding-top: 70px;
   padding-bottom: 30px;
-  background-color: #008140;
+  background-color: #67E667;
 }
 
 .theme-dropdown .dropdown-menu {
@@ -36,16 +39,16 @@ body {
 }
 
 .main-content {
-  color: #f8f8f8;
+  color: #015666;
   padding-left: 50px;
 }
 
 .main-content a {
-  color: #ffd65a;
+  color: #007D1C;
 }
 
 .main-content a:hover {
-  color: #fdc307;
+  color: #24913C;
 }
 
 .main-content p {
@@ -82,4 +85,15 @@ div.hr {
 
 #wc-logo {
   height: 300px
+}
+
+
+.footer {
+  background-color: #f8f8f8;
+}
+
+.footer p {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 10px;
 }

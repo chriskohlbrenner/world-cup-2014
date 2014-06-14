@@ -150,6 +150,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0.4)
+    semantic-ui-sass (0.16.1.0)
+      sass (~> 3.2)
     simplecov (0.8.2)
       docile (~> 1.1.0)
       multi_json
@@ -209,6 +211,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.2)
   sdoc (~> 0.4.0)
   selenium-webdriver
+  semantic-ui-sass (~> 0.16.1.0)
   simplecov
   spring
   sprockets_better_errors
