@@ -63,4 +63,20 @@ namespace :populate do
       team_match_2.save
     end
   end
+
+  task :time_fix => :environment do
+    matches = Match.all
+    matches.each do |match|
+      match.start_time += 79200 if match.start_time.strftime("%H %M") == "20 00"
+      match.save
+    end
+  end
+
+  task :subtract_four => :environment do
+    matches = Match.all
+    matches.each do |match|
+      match.start_time -= 14400
+      match.save
+    end
+  end
 end

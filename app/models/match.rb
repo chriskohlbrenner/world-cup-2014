@@ -9,6 +9,6 @@ class Match < ActiveRecord::Base
   end
 
   def display_time
-    start_time.localtime.strftime("%A, %B %e, at %l:%M %p EDT")
+    start_time.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %e, at %l:%M %p EDT")
   end
 end
