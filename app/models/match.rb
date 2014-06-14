@@ -12,6 +12,11 @@ class Match < ActiveRecord::Base
     games.first
   end
 
+  def self.last_match
+    games = where(status: "Final").order(:start_time)
+    games.last
+  end
+
   def display_time
     start_time.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %e, at %l:%M %p EDT")
   end

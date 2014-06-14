@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   def index
     @matches = Match.all
     @next_match = Match.next_match
+    @recent_match = Match.last_match
     @current_matches = []
     @matches.each do |match|
       @current_matches << match if match.status == "In-progress"
