@@ -22,11 +22,11 @@
   </div>
 
   <div class="col-md-10">
-    <h3>Matches in progress</h3>
+    <div class="hr"></div>
+    <h3>Matches in progress:</h3>
     <% @current_matches.each do |match| %>
       <% home_team = match.teams[0] %>
       <% away_team = match.teams[1] %>
-      <div class="hr"></div>
         <h4>Group <%= home_team.group %></h4>
         <h3><%= link_to match.display_time, match_path(match) %></h3>
         <p><%= home_team.name %>: <%= match.home_score %> - <%= away_team.name %>: <%= match.away_score %></p>
@@ -48,6 +48,27 @@
     <% end  %>
   </div>
   <div class="col-md-10">
-    <h3>Upcoming Matches</h3>
-    N/A
+    <div class="hr"></div>
+    <h3>Next match:</h3>
+    <% match = @next_match %>
+    <% home_team = match.teams[0] %>
+    <% away_team = match.teams[1] %>
+        <h4>Group <%= home_team.group %></h4>
+        <h3><%= link_to match.display_time, match_path(match) %></h3>
+        <p><%= home_team.name %>: <%= match.home_score %> - <%= away_team.name %>: <%= match.away_score %></p>
+        
+        <div class="col-md-8">
+          <%= link_to team_path(home_team) do %>
+            <div class="col-md-4 left team-block">
+              <h3><%= home_team.name %></h3>
+              <img src="<%= home_team.logo %>"/>
+            </div>
+          <% end %>
+          <%= link_to team_path(away_team) do %>
+            <div class="col-md-4 right team-block">
+              <h3><%= away_team.name %></h3>
+              <img src="<%= away_team.logo %>"/>
+            </div>
+          <% end %>
+        </div>
   </div>
