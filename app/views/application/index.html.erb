@@ -1,0 +1,53 @@
+<div class="col-md-12">
+  <h2>Welcome! This is a World Cup app [in-progress], built by <a href="https://github.com/chriskohlbrenner">Chris Kohlbrenner</a>.</h2>
+  <div class="col-md-6 left">
+  <h3>Features</h3>
+    <strong>Currently:</strong>
+      <ul>
+        <li>Index of <a href="/matches">all matches, times, and results</a> (if completed).</li>
+        <li>Individual pages for <a href="/matches">each team</a>, including results and upcoming matches.</li>
+        <li>List of <a href="/teams">all teams and logos</a>.</li>
+      </ul>
+
+    <strong>Forthcoming:</strong>
+      <ul>
+        <li>Real-time updates to games (including times, scores, stats).</li>
+        <li>Data for each group of four.</li>
+        <li>Statistics and analysis of individual and team performance.</li>
+        <li>Search feature enabling users to easily find any information related to a given search term.</li>
+      </ul>
+  </div>
+  <div class="col-md-4">
+    <img id="wc-logo" src="/assets/WC-2014-Brasil.svg"/>
+  </div>
+
+  <div class="col-md-10">
+    <h3>Matches in progress</h3>
+    <% @current_matches.each do |match| %>
+      <% home_team = match.teams[0] %>
+      <% away_team = match.teams[1] %>
+      <div class="hr"></div>
+        <h4>Group <%= home_team.group %></h4>
+        <h3><%= link_to match.display_time, match_path(match) %></h3>
+        <p><%= home_team.name %>: <%= match.home_score %> - <%= away_team.name %>: <%= match.away_score %></p>
+        
+        <div class="col-md-8">
+          <%= link_to team_path(home_team) do %>
+            <div class="col-md-4 left team-block">
+              <h3><%= home_team.name %></h3>
+              <img src="<%= home_team.logo %>"/>
+            </div>
+          <% end %>
+          <%= link_to team_path(away_team) do %>
+            <div class="col-md-4 right team-block">
+              <h3><%= away_team.name %></h3>
+              <img src="<%= away_team.logo %>"/>
+            </div>
+          <% end %>
+        </div>
+    <% end  %>
+  </div>
+  <div class="col-md-10">
+    <h3>Upcoming Matches</h3>
+    N/A
+  </div>

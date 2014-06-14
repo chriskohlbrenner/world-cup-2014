@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'teams#index'
+  root 'application#index'
   get 'teams' => 'teams#index'
   get 'teams/:id' => 'teams#show', :as => "team"
   get 'matches' => 'matches#index'
