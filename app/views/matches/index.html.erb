@@ -1,15 +1,31 @@
 <h1>All Matches</h1>
-<ul>
+
 <% @matches.each do |match| %>
-<div>
 <% home_team = match.teams[0] %>
 <% away_team = match.teams[1] %>
-<h4><%= link_to home_team.name, team_path(home_team) %> vs. <%= link_to away_team.name, team_path(away_team) %></h4>
-<img src="<%= home_team.logo %>"/><img src="<%= away_team.logo %>"/>
-<br>
-<strong><%= match.status %></strong> | <%= link_to match.start_time, match_path(match) %>
-<br>
+
+
+<div class="col-md-8">
+<h3><%= link_to match.display_time, match_path(match) %> (<%= match.status %>)</h3>
+
+  <%= link_to team_path(home_team) do %>
+  <div class="col-md-3 team-block">
+        <h3><%= home_team.name %></h3>
+        <img src="<%= home_team.logo %>"/>
+  </div>
+  <% end %>
+  <div class="col-md-2 vs">
+    <br><br><br><br>
+    <p>vs.</p>
+  </div>
+
+  <%= link_to team_path(away_team) do %>
+  <div class="col-md-3 team-block">
+        <h3><%= away_team.name %></h3>
+        <img src="<%= away_team.logo %>"/>
+  </div>
+  <% end %>
 </div>
------
+
+
 <% end %>
-</ul>

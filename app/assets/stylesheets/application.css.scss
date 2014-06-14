@@ -35,10 +35,27 @@ body {
   margin: 5px 0;
 }
 
-a {
-  color: white;
+.main-content {
+  color: #f8f8f8;
+  padding-left: 50px;
 }
 
-nav {
+.main-content a {
+  color: #ffd65a;
+}
+
+.main-content a:hover {
   color: #fdc307;
+}
+
+.main-content p {
+  font-size: 30px;
+}
+
+.team-block img:hover {
+  opacity: 0.7;
+}
+
+.vs {
+  text-align: center;
 }

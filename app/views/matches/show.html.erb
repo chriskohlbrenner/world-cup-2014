@@ -5,5 +5,5 @@
 <h4><%= link_to home_team.name, team_path(home_team) %> vs. <%= link_to away_team.name, team_path(away_team) %></h4>
 <img src="<%= home_team.logo %>"/><img src="<%= away_team.logo %>"/>
 <br>
-<strong><%= @match.status %></strong> | <%= link_to @match.start_time, match_path(@match) %>
+<strong><%= @match.status %></strong> | <%= link_to @match.display_time, match_path(@match) %>
 </div>
