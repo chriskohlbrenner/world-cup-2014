@@ -59,6 +59,7 @@ body {
   opacity: 0.7;
 }
 
+
 .team-block img {
   height: 80px;
 }
@@ -155,4 +156,22 @@ body {
 table {
   color: black;
   float: left;
+}
+
+.table a {
+  color: #00296d;
+}
+
+.table a {
+  color: #2980b9;
+}
+
+table#groups {
+  // max-width: 10%;
+  min-width: 75px;
+  margin-bottom: 30px;
+}
+
+.extra-pad {
+  padding-bottom: 50px;
 }

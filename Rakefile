@@ -7,6 +7,14 @@ require 'net/http'
 Rails.application.load_tasks
 
 namespace :populate do
+  task :groups => :environment do
+    ["A","B","C","D","E","F","G","H"].each do |letter|
+      new_group = Group.new
+      new_group.group_letter = letter
+      new_group.save
+    end
+  end
+
   task :teams => :environment do
     response = Net::HTTP.get_response('worldcup.kimonolabs.com','/api/teams?apikey=f4552154b80ab28c8ab1a4a1adca9ebe')
     teams = JSON.parse(response.body)
@@ -16,7 +24,7 @@ namespace :populate do
       team.name = api_team["name"]
       team.logo = api_team["logo"]
       team.website = api_team["website"]
-      team.group = api_team["group"]
+      team.group_letter = api_team["group"]
       team.group_rank = api_team["groupRank"]
       team.group_points = api_team["groupPoints"]
       team.matches_played = api_team["matchesPlayed"]

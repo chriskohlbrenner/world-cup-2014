@@ -5,7 +5,7 @@ class CreateTeams < ActiveRecord::Migration
       t.string :name
       t.string :logo
       t.string :website
-      t.string :group
+      t.string :group_letter
       t.integer :group_rank
       t.integer :group_points
       t.integer :matches_played

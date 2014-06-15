@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140614025943) do
+ActiveRecord::Schema.define(version: 20140615015916) do
+
+  create_table "groups", force: true do |t|
+    t.string   "group_letter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "matches", force: true do |t|
     t.string   "api_id"
@@ -40,7 +46,7 @@ ActiveRecord::Schema.define(version: 20140614025943) do
     t.string   "name"
     t.string   "logo"
     t.string   "website"
-    t.string   "group"
+    t.string   "group_letter"
     t.integer  "group_rank"
     t.integer  "group_points"
     t.integer  "matches_played"

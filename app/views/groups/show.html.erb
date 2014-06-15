@@ -1,0 +1,31 @@
+<h1>Group <%= @group.group_letter %></h1>
+<div class="col-md-12">
+  <table class="ui table segment">
+    <thead>
+      <th>Team</th>
+      <th>Games Played</th>
+      <th>Goals For</th>
+      <th>Goals Against</th>
+      <th>Differential</th>
+      <th>Points</th>
+    </thead>
+    <tbody>
+      <% @group.teams.order(:group_rank).each do |team| %>
+      <tr>
+        <td><%= link_to team.name, team_path(team) %></td>
+        <td><%= team.matches_played %></td>
+        <td><%= team.goals_for %></td>
+        <td><%= team.goals_against %></td>
+        <td><%= team.goal_differential %></td>
+        <td><%= team.group_points %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="col-md-12">
+  <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>  
+  <h3>Top Players in Group <%= @group.group_letter %></h3>
+    Coming soon.
+  <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>  
+</div>

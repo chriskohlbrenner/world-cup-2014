@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'teams/:id' => 'teams#show', :as => "team"
   get 'matches' => 'matches#index'
   get 'matches/:id' => 'matches#show', :as => "match"
+  get 'groups' => 'groups#index'
+  get 'groups/:letter' => 'groups#show', :as => "group"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

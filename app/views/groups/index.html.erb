@@ -1,0 +1,70 @@
+<div class="col-md-12 extra-pad">
+  <h1>2014 World Cup Groups</h1>
+</div>
+<div class="col-md-3">
+  <table class="ui table segment" id="groups">
+    <thead>
+    <% @groups[0..1].each do |group| %>
+      <th><%= link_to "Group " + group.group_letter, group_path(group.group_letter) %></th>
+      <% group.teams.each do |team| %>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= link_to team.name, team_path(team) %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="col-md-3">
+  <table class="ui table segment" id="groups">
+    <thead>
+    <% @groups[2..3].each do |group| %>
+      <th><%= link_to "Group " + group.group_letter, group_path(group.group_letter) %></th>
+      <% group.teams.each do |team| %>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= link_to team.name, team_path(team) %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="col-md-3">
+  <table class="ui table segment" id="groups">
+    <thead>
+    <% @groups[4..5].each do |group| %>
+      <th><%= link_to "Group " + group.group_letter, group_path(group.group_letter) %></th>
+      <% group.teams.each do |team| %>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= link_to team.name, team_path(team) %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="col-md-3">
+  <table class="ui table segment" id="groups">
+    <thead>
+    <% @groups[6..7].each do |group| %>
+      <th><%= link_to "Group " + group.group_letter, group_path(group.group_letter) %></th>
+      <% group.teams.each do |team| %>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= link_to team.name, team_path(team) %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="col-md-12 extra-pad">
+  <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>  
+</div>

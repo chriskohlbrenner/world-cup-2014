@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+system("
+rake db:drop
+rake db:migrate
+rake populate:groups
+rake populate:teams
+rake populate:matches
+rake populate:team_matches
+rake populate:time_fix")
