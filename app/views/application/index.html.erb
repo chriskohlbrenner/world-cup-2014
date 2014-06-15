@@ -6,15 +6,15 @@
   <h3>Features</h3>
     <strong>Currently:</strong>
       <ul>
-        <li>Index of <a href="/matches">all matches, times, and results</a> (if completed).</li>
-        <li>Individual pages for <a href="/matches">each team</a>, including results and upcoming matches.</li>
-        <li>List of <a href="/teams">all teams and logos</a>.</li>
+        <li>Index of <%= link_to "all matches, times, and results", matches_path %>.</li>
+        <li>Individual pages for each team, including results and upcoming matches.</li>
+        <li>List of <%= link_to "all teams and logos", teams_path %>.</li>
+        <li>Data for each <%= link_to "group of four", groups_path %>.</li>
       </ul>
 
     <strong>Forthcoming:</strong>
       <ul>
         <li>Real-time updates to games (including times, scores, stats).</li>
-        <li>Data for each group of four.</li>
         <li>Statistics and analysis of individual and team performance.</li>
         <li>Search feature enabling users to easily find any information related to a given search term.</li>
       </ul>
@@ -23,83 +23,42 @@
     <img id="wc-logo" src="/assets/WC-2014-Brasil.svg"/>
   </div>
 </div>
-  <div class="col-md-4 index-match">
-    <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
-    <h3>Most recent match:</h3>
-    <% match = @recent_match %>
-    <% home_team = match.teams[0] %>
-    <% away_team = match.teams[1] %>
-        <h4>Group <%= home_team.group %></h4>
-        <h3><%= link_to match.display_time, match_path(match) %></h3>
-        <p><%= home_team.name %>: <%= match.home_score %> - <%= away_team.name %>: <%= match.away_score %></p>
-        
-        <div class="col-md-8">
-          <%= link_to team_path(home_team) do %>
-            <div class="col-md-4 left team-block <%= "loser" if match.loser == home_team %> <%= "winner" if match.winner == home_team %>">
-              <p><img src="<%= home_team.logo %>"/><br><%= home_team.name %></p>
-              
-            </div>
-          <% end %>
-          <%= link_to team_path(away_team) do %>
-            <div class="col-md-4 right team-block <%= "loser" if match.loser == away_team %> <%= "winner" if match.winner == away_team %>">
-              <p><img src="<%= away_team.logo %>"/><br><%= away_team.name %></p>
-              
-            </div>
-          <% end %>
-        </div>
-  </div>
-  <div class="col-md-4 index-match">
-    <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
-    <h3>Matches in progress:</h3>
-    <%= "No matches are currently being played." if @current_matches.empty?  %>
-    <% @current_matches.each do |match| %>
-      <% home_team = match.teams[0] %>
-      <% away_team = match.teams[1] %>
-        <h4>Group <%= home_team.group %></h4>
-        <h3><%= link_to match.display_time, match_path(match) %></h3>
-        <p><%= home_team.name %>: <%= match.home_score %> - <%= away_team.name %>: <%= match.away_score %></p>
-        
-        <div class="col-md-8">
-          <%= link_to team_path(home_team) do %>
-            <div class="col-md-4 left team-block">
-              <p><img src="<%= home_team.logo %>"/><br><%= home_team.name %></p>
-              
-            </div>
-          <% end %>
-          <%= link_to team_path(away_team) do %>
-            <div class="col-md-4 right team-block">
-              <p><img src="<%= away_team.logo %>"/><br><%= away_team.name %></p>
-              
-            </div>
-          <% end %>
-        </div>
-    <% end  %>
-  </div>
-  <div class="col-md-4 index-match">
-    <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
-    <h3>Next match:</h3>
-    <% match = @next_match %>
-    <% home_team = match.teams[0] %>
-    <% away_team = match.teams[1] %>
-        <h4>Group <%= home_team.group %></h4>
-        <h3><%= link_to match.display_time, match_path(match) %></h3>
-        <p><%= home_team.name %>: <%= match.home_score %> - <%= away_team.name %>: <%= match.away_score %></p>
-        
-        <div class="col-md-8">
-          <%= link_to team_path(home_team) do %>
-            <div class="col-md-4 left team-block">
-              <p><img src="<%= home_team.logo %>"/><br><%= home_team.name %></p>
-              
-            </div>
-          <% end %>
-          <%= link_to team_path(away_team) do %>
-            <div class="col-md-4 right team-block">
-              <p><img src="<%= away_team.logo %>"/><br><%= away_team.name %></p>
-              
-            </div>
-          <% end %>
-        </div>
-  </div>
-  <div class="col-md-12">
-    <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
-  </div>
+
+<div class="col-md-4 index-match home">
+  <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
+  <h3 class="blue">Most recent match:</h3>
+  <% match = @recent_match %>
+  <% home_team = match.teams[0] %>
+  <% away_team = match.teams[1] %>
+  <h4>Group <%= home_team.group %></h4>
+  <h3><%= link_to match.display_time, match_path(match) %></h3>
+  <p class="score"><span class="<%= "loser" if match.loser == home_team %> <%= "winner" if match.winner == home_team %>"><img src="<%= home_team.logo %>"/> <%= link_to home_team.name, team_path(home_team) %></span>: <%= match.home_score %> - <span class="<%= "loser" if match.loser == away_team %> <%= "winner" if match.winner == away_team %>"><img src="<%= away_team.logo %>"/> <%= link_to away_team.name, team_path(away_team) %></span>: <%= match.away_score %></p>
+</div>
+
+<div class="col-md-4 index-match home">
+  <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
+  <h3>Matches in progress:</h3>
+  <%= "No matches are currently being played." if @current_matches.empty?  %>
+  <% @current_matches.each do |match| %>
+  <% home_team = match.teams[0] %>
+  <% away_team = match.teams[1] %>
+  <h4>Group <%= home_team.group %></h4>
+  <h3><%= link_to match.display_time, match_path(match) %></h3>
+  <p class="score"><img src="<%= home_team.logo %>"/> <%= link_to home_team.name, team_path(home_team) %>: <%= match.home_score %> - <img src="<%= away_team.logo %>"/> <%= link_to away_team.name, team_path(away_team) %>: <%= match.away_score %></p>
+  <% end  %>
+</div>
+
+<div class="col-md-4 index-match home">
+  <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
+  <h3>Next match:</h3>
+  <% match = @next_match %>
+  <% home_team = match.teams[0] %>
+  <% away_team = match.teams[1] %>
+  <h4>Group <%= home_team.group %></h4>
+  <h3><%= link_to match.display_time, match_path(match) %></h3>
+  <p class="score"><img src="<%= home_team.logo %>"/> <%= link_to home_team.name, team_path(home_team) %>: <%= match.home_score %> - <img src="<%= away_team.logo %>"/> <%= link_to away_team.name, team_path(away_team) %>: <%= match.away_score %></p>
+</div>
+
+<div class="col-md-12">
+  <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
+</div>
