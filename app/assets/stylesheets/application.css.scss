@@ -21,6 +21,15 @@
 @import "semantic-ui";
 /* Some Style from the Bootstrap Default Theme */
 
+
+// COLORS
+// white
+// #f8f8f8 (whitesmoke - body text color)
+// #f1c40f (gold - body links/headings)
+// #fed109 (gold hover color)
+// #00296d (midnight blue = headings)
+// #2980b9 (light blue - footer link color)
+
 body {
   font-family: "Ubuntu", sans-serif;
   padding-top: 70px;
@@ -190,4 +199,8 @@ table#groups {
 
 .extra-pad {
   padding-bottom: 50px;
+}
+
+h3#match-date a {
+  color: #f8f8f8;
 }

@@ -12,8 +12,9 @@
         <li>Data for each <%= link_to "group of four", groups_path %>.</li>
       </ul>
 
-    <strong>Forthcoming:</strong>
+    <strong>Coming soon:</strong>
       <ul>
+        <li>A <%= link_to "match listings page", matches_path %> that's not so hard to look at.</li>
         <li>Real-time updates to games (including times, scores, stats).</li>
         <li>Statistics and analysis of individual and team performance.</li>
         <li>Search feature enabling users to easily find any information related to a given search term.</li>
@@ -24,41 +25,111 @@
   </div>
 </div>
 
-<div class="col-md-4 index-match home">
+<div class="col-md-12">
   <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
+</div>
+
+<div class="col-md-4 index-match home">
   <h3 class="blue">Most recent match:</h3>
   <% match = @recent_match %>
   <% home_team = match.teams[0] %>
   <% away_team = match.teams[1] %>
-  <h4>Group <%= home_team.group %></h4>
-  <h3><%= link_to match.display_time, match_path(match) %></h3>
+  <h4>Group <%= home_team.group_letter %></h4>
+  <h3 id="match-date"><%= link_to match.display_time, match_path(match) %></h3>
   <p class="score"><span class="<%= "loser" if match.loser == home_team %> <%= "winner" if match.winner == home_team %>"><img src="<%= home_team.logo %>"/> <%= link_to home_team.name, team_path(home_team) %></span>: <%= match.home_score %> - <span class="<%= "loser" if match.loser == away_team %> <%= "winner" if match.winner == away_team %>"><img src="<%= away_team.logo %>"/> <%= link_to away_team.name, team_path(away_team) %></span>: <%= match.away_score %></p>
 </div>
 
 <div class="col-md-4 index-match home">
-  <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
   <h3>Matches in progress:</h3>
   <%= "No matches are currently being played." if @current_matches.empty?  %>
   <% @current_matches.each do |match| %>
   <% home_team = match.teams[0] %>
   <% away_team = match.teams[1] %>
-  <h4>Group <%= home_team.group %></h4>
-  <h3><%= link_to match.display_time, match_path(match) %></h3>
+  <h4>Group <%= home_team.group_letter %></h4>
+  <h3 id="match-date"><%= link_to match.display_time, match_path(match) %></h3>
   <p class="score"><img src="<%= home_team.logo %>"/> <%= link_to home_team.name, team_path(home_team) %>: <%= match.home_score %> - <img src="<%= away_team.logo %>"/> <%= link_to away_team.name, team_path(away_team) %>: <%= match.away_score %></p>
   <% end  %>
 </div>
 
 <div class="col-md-4 index-match home">
-  <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
   <h3>Next match:</h3>
   <% match = @next_match %>
   <% home_team = match.teams[0] %>
   <% away_team = match.teams[1] %>
-  <h4>Group <%= home_team.group %></h4>
-  <h3><%= link_to match.display_time, match_path(match) %></h3>
+  <h4>Group <%= home_team.group_letter %></h4>
+  <h3 id="match-date"><%= link_to match.display_time, match_path(match) %></h3>
   <p class="score"><img src="<%= home_team.logo %>"/> <%= link_to home_team.name, team_path(home_team) %>: <%= match.home_score %> - <img src="<%= away_team.logo %>"/> <%= link_to away_team.name, team_path(away_team) %>: <%= match.away_score %></p>
 </div>
 
 <div class="col-md-12">
   <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
+  <div class="col-md-3">
+    <table class="ui table segment" id="groups">
+      <thead>
+      <% @groups[0..1].each do |group| %>
+        <th><%= link_to "Group " + group.group_letter, group_path(group.group_letter) %></th>
+        <% group.teams.order(:group_rank).each do |team| %>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= link_to team.name, team_path(team) %>: <%= team.group_points %> points <% pluralize(team.matches_played, "match") %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-3">
+    <table class="ui table segment" id="groups">
+      <thead>
+      <% @groups[2..3].each do |group| %>
+        <th><%= link_to "Group " + group.group_letter, group_path(group.group_letter) %></th>
+        <% group.teams.order(:group_rank).each do |team| %>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= link_to team.name, team_path(team) %>: <%= team.group_points %> points <% pluralize(team.matches_played, "match") %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-3">
+    <table class="ui table segment" id="groups">
+      <thead>
+      <% @groups[4..5].each do |group| %>
+        <th><%= link_to "Group " + group.group_letter, group_path(group.group_letter) %></th>
+        <% group.teams.order(:group_rank).each do |team| %>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= link_to team.name, team_path(team) %>: <%= team.group_points %> points <% pluralize(team.matches_played, "match") %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-3">
+    <table class="ui table segment" id="groups">
+      <thead>
+      <% @groups[6..7].each do |group| %>
+        <th><%= link_to "Group " + group.group_letter, group_path(group.group_letter) %></th>
+        <% group.teams.order(:group_rank).each do |team| %>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= link_to team.name, team_path(team) %>: <%= team.group_points %> points <% pluralize(team.matches_played, "match") %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
+
+<div class="col-md-12">
+  <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
+</div>
+
