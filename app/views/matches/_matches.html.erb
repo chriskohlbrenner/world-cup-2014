@@ -5,7 +5,7 @@
 
 <div class="col-md-6 midnight" id="match">
 <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
-<h4>Group <%= home_team.group %></h4>
+<h4>Group <%= home_team.group_letter %></h4>
 <h3><%= link_to match.display_time, match_path(match) %> <%= match.status unless match.status == "Pre-game" %></h3>
 <p>
 <% if match.winner? %>

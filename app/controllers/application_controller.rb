@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
+    @groups = Group.all
     @matches = Match.all
     @next_match = Match.next_match
     @recent_match = Match.last_match
