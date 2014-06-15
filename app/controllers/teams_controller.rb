@@ -5,5 +5,6 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    @matches = @team.matches.order(:start_time)
   end
 end

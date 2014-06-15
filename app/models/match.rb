@@ -8,7 +8,7 @@ class Match < ActiveRecord::Base
   end
 
   def self.next_match
-    games = where(status: "Pre-game")
+    games = where(status: "Pre-game").order(:start_time)
     games.first
   end
 

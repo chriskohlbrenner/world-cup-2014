@@ -1,18 +1,34 @@
-<h1><%= @team.name %></h1>
-<img src="<%= @team.logo %>"/>
-(<%= @team.wins %> - <%= @team.losses %> - <%= @team.draws %>)
-Currently ranked <%= (@team.group_rank).ordinalize %> in Group <%= @team.group %>.
-<% match = @team.next_match %>
+<div class="col-md-12 team">
+  <div class="col-md-2">
+    <img src="<%= @team.logo %>"/>
+  </div>
 
-<div>
-<h3>Next match:</h3>
-<% home_team = match.teams[0] %>
-<% away_team = match.teams[1] %>
-<h4><%= link_to home_team.name, team_path(home_team) %> vs. <%= link_to away_team.name, team_path(away_team) %></h4>
-<strong><%= match.status %></strong> | <%= link_to match.start_time, match_path(match) %>
+  <div class="col-md-4">
+    <h1><%= @team.name %></h1>
+    <p>(<%= @team.wins %>-<%= @team.losses %>-<%= @team.draws %>), ranked <%= (@team.group_rank).ordinalize %> in Group <%= @team.group %>.</p>
+    <p>Next match: <%= link_to @team.next_match.display_time, @team.next_match %> vs. <%= link_to @team.next_opponent.name, team_path(@team.next_opponent) %></p>
+  </div>
+  <div class="col-md-6">
+    <table class="ui table segment">
+      <thead>
+        <th>Goals For</th>
+        <th>Goals Against</th>
+        <th>Differential</th>
+        <th>Points</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @team.goals_for %></td>
+          <td><%= @team.goals_against %></td>
+          <td><%= @team.goal_differential %></td>
+          <td><%= @team.group_points %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+<div class="col-md-12">
 
-<div>
-          GF            |             GA              |           Differential<br>
-<%= @team.goals_for %>  |  <%= @team.goals_against %> | <%= @team.goal_differential %>
+<%= render partial: "matches/matches" %>
+
 </div>
