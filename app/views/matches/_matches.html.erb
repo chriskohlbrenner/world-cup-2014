@@ -3,7 +3,7 @@
 <% away_team = match.teams[1] %>
 
 
-<div class="col-md-6" id="match">
+<div class="col-md-6 midnight" id="match">
 <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
 <h4>Group <%= home_team.group %></h4>
 <h3><%= link_to match.display_time, match_path(match) %> <%= match.status unless match.status == "Pre-game" %></h3>
@@ -12,20 +12,23 @@
   <%= match.winner.name %> defeats <%= match.loser.name %>, <%= match.home_score %> - <%= match.away_score %>
 <% elsif match.status == "In-progress" %>
   <%= home_team.name %>: <%= match.home_score %> - <%= away_team.name %>: <%= match.away_score %>
+<% elsif !match.winner && match.status == "Final" %>
+  Draw: <%= home_team.name %>: <%= match.home_score %> - <%= away_team.name %>: <%= match.away_score %>
 <% end %>
 </p>
   
   <div class="col-md-8">
     <%= link_to team_path(home_team) do %>
-    <div class="col-md-4 left team-block">
-      <p><img src="<%= home_team.logo %>"/><br><%= home_team.name %></p>
-    </div>
+      <div class="col-md-4 left team-block <%= "loser" if match.loser == home_team %> <%= "winner" if match.winner == home_team %>">
+        <p><img src="<%= home_team.logo %>"/><br><%= home_team.name %></p>
+      </div>
+      
     <% end %>
   
     <%= link_to team_path(away_team) do %>
-    <div class="col-md-4 right team-block">
-      <p><img src="<%= away_team.logo %>"/><br><%= away_team.name %></p>
-    </div>
+      <div class="col-md-4 right team-block <%= "loser" if match.loser == away_team %> <%= "winner" if match.winner == away_team %>">
+        <p><img src="<%= away_team.logo %>"/><br><%= away_team.name %></p>
+      </div>
     <% end %>
   </div>
 
