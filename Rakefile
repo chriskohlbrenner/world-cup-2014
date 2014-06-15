@@ -95,7 +95,7 @@ namespace :update do
     matches = JSON.parse(response.body)
     matches.each do |api_match|
       local_match = Match.find_by(api_id: api_match["id"])
-      local_match.update_attributes(status: api_match["status"], current_game_minutes: api_match["currentGameMinutes"], home_score: api_match["homeScore"], away_score: api_match["awayScore"])
+      local_match.update_attributes(status: api_match["status"], current_game_minutes: api_match["currentGameMinute"], home_score: api_match["homeScore"], away_score: api_match["awayScore"])
     end
   end
 

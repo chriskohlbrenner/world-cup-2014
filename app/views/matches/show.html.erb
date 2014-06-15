@@ -11,7 +11,7 @@
     <% if match.winner? %>
       <%= match.winner.name %> defeats <%= match.loser.name %>, <%= match.home_score %> - <%= match.away_score %>
     <% elsif match.status == "In-progress" %>
-      <%= home_team.name %>: <%= match.home_score %> - <%= away_team.name %>: <%= match.away_score %>
+      <%= "Live, " + match.current_game_minutes.to_s + "'" if !match.current_game_minutes.nil? %><br><%= home_team.name %>: <%= match.home_score %> - <%= away_team.name %>: <%= match.away_score %>
     <% end %>
   </p>
   

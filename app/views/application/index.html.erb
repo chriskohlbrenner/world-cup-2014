@@ -31,7 +31,7 @@
 </div>
 
 <div class="col-md-4 index-match home">
-  <h3 class="blue">Most recent match:</h3>
+  <h3>Most recent match:</h3>
   <% match = @recent_match %>
   <% home_team = match.teams[0] %>
   <% away_team = match.teams[1] %>
@@ -47,7 +47,7 @@
   <% home_team = match.teams[0] %>
   <% away_team = match.teams[1] %>
   <h4>Group <%= home_team.group_letter %></h4>
-  <h3 id="match-date"><%= link_to match.display_time, match_path(match) %></h3>
+  <h3 id="match-date"><a href="/matches/<%= match.id %>"><%= "Live, " + match.current_game_minutes.to_s + "'" if !match.current_game_minutes.nil? %></a></h3>
   <p class="score"><img src="<%= home_team.logo %>"/> <%= link_to home_team.name, team_path(home_team) %>: <%= match.home_score %> - <img src="<%= away_team.logo %>"/> <%= link_to away_team.name, team_path(away_team) %>: <%= match.away_score %></p>
   <% end  %>
 </div>
