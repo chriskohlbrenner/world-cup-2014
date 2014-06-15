@@ -18,6 +18,7 @@
         <li>Real-time updates to games (including times, scores, stats).</li>
         <li>Statistics and analysis of individual and team performance.</li>
         <li>Search feature enabling users to easily find any information related to a given search term.</li>
+        <li>Listing of players and stats.</li>
       </ul>
   </div>
   <div class="col-md-4">
@@ -63,6 +64,7 @@
 
 <div class="col-md-12">
   <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
+  <h3>Current Group Rankings</h3>
   <div class="col-md-3">
     <table class="ui table segment" id="groups">
       <thead>
@@ -72,7 +74,7 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= link_to team.name, team_path(team) %>: <%= team.group_points %> points <% pluralize(team.matches_played, "match") %></td>
+          <td><%= link_to team.name, team_path(team) %> (<%= team.wins %>-<%= team.losses %>-<%= team.draws %>): <%= team.group_points %> points <% pluralize(team.matches_played, "match") %></td>
           <% end %>
         </tr>
         <% end %>
@@ -88,7 +90,7 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= link_to team.name, team_path(team) %>: <%= team.group_points %> points <% pluralize(team.matches_played, "match") %></td>
+          <td><%= link_to team.name, team_path(team) %> (<%= team.wins %>-<%= team.losses %>-<%= team.draws %>): <%= team.group_points %> points <% pluralize(team.matches_played, "match") %></td>
           <% end %>
         </tr>
         <% end %>
@@ -104,7 +106,7 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= link_to team.name, team_path(team) %>: <%= team.group_points %> points <% pluralize(team.matches_played, "match") %></td>
+          <td><%= link_to team.name, team_path(team) %> (<%= team.wins %>-<%= team.losses %>-<%= team.draws %>): <%= team.group_points %> points <% pluralize(team.matches_played, "match") %></td>
           <% end %>
         </tr>
         <% end %>
@@ -120,7 +122,7 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= link_to team.name, team_path(team) %>: <%= team.group_points %> points <% pluralize(team.matches_played, "match") %></td>
+          <td><%= link_to team.name, team_path(team) %> (<%= team.wins %>-<%= team.losses %>-<%= team.draws %>): <%= team.group_points %> points <% pluralize(team.matches_played, "match") %></td>
           <% end %>
         </tr>
         <% end %>
