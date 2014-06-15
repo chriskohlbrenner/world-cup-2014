@@ -10,6 +10,7 @@
   <% if match.winner? %>
     <a href="/teams/<%= match.winner.id %>" id="winner"><span class="winner"><img src="<%= match.winner.logo %>"/><%= match.winner.name %></span></a> defeats <a href="/teams/<%= match.loser.id %>" id="loser"><span class="loser"><img src="<%= match.loser.logo %>"/><%= match.loser.name %></span></a>, <%= match.home_score %> - <%= match.away_score %>
   <% elsif match.status == "In-progress" %>
+    <%= "Live, " + match.current_game_minutes.to_s + "'" if !match.current_game_minutes.nil? %>
     <a href="/teams/<%= home_team.id %>"><span><img src="<%= home_team.logo %>"/> <%= home_team.name %></span></a>: <%= match.home_score %> - <a href="/teams/<%= away_team.id %>"><span><img src="<%= away_team.logo %>"/> <%= away_team.name %></span></a>: <%= match.away_score %>
   <% elsif !match.winner && match.status == "Final" %>
     Draw: <a href="/teams/<%= home_team.id %>"><span><img src="<%= home_team.logo %>"/> <%= home_team.name %></span></a>: <%= match.home_score %> - <a href="/teams/<%= away_team.id %>"><span><img src="<%= away_team.logo %>"/> <%= away_team.name %></span></a>: <%= match.away_score %>
