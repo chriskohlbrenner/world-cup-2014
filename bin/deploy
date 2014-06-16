@@ -7,5 +7,5 @@ if !log.any? {|line| line.match(/heroku/)}
   You must run `bin/setup` first!
   ERROR
 else
-  system("git push heroku master && heroku run rake db:migrate && heroku run rake update:game_results && heroku run rake update:teams && heroku open")
+  system("git push heroku master && heroku run rake update:game_results && heroku run rake update:teams && heroku open")
 end
