@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615015916) do
+ActiveRecord::Schema.define(version: 20140616021746) do
 
   create_table "groups", force: true do |t|
     t.string   "group_letter"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20140615015916) do
     t.string   "goal_differential"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "flag"
   end
 
 end
