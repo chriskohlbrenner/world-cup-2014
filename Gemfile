@@ -57,3 +57,4 @@ end
 gem "bootstrap-sass", "~> 3.1.1"
 gem "airbrake"
 gem 'semantic-ui-sass', '~> 0.16.1.0'
+gem 'newrelic_rpm'
