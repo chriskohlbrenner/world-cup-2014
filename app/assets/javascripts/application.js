@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require semantic-ui
+//= require angular
+//= require main
 //= require_tree .

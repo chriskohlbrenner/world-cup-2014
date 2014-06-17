@@ -28,8 +28,8 @@
           </ul>
         </li> -->
         <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+          <div class="form-group" ng-controller="TypeaheadCtrl">
+            <input type="text" class="form-control" placeholder="Search" ng-model="result" typeahead="suggestion for suggestion in cities($viewValue)">
           </div>
         </form>
       </ul>
