@@ -1,6 +1,16 @@
 # Add your own tasks in files placed in lib/tasks ending in .rake,
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
+# Run the following:
+# rake db:migrate
+# rake populate:groups
+# rake populate:teams
+# rake populate:matches
+# rake populate:team_matches
+# rake populate:players
+# rake populate:team_players
+# rake populate:time_fix
+
 require File.expand_path('../config/application', __FILE__)
 require 'net/http'
 
@@ -69,6 +79,46 @@ namespace :populate do
       team_match_2.home_team = false
       team_match_1.save
       team_match_2.save
+    end
+  end
+
+  task :players => :environment do
+    response = Net::HTTP.get_response('worldcup.kimonolabs.com','/api/players?apikey=f4552154b80ab28c8ab1a4a1adca9ebe')
+    players = JSON.parse(response.body)
+    players.each do |api_player|
+      player = Player.new
+      player.first_name = api_player["firstName"]
+      player.last_name = api_player["lastName"]
+      player.nickname = api_player["nickname"]
+      player.nationality = api_player["nationality"]
+      player.age = api_player["age"]
+      player.birth_date = api_player["birthDate"]
+      player.birth_country = api_player["birthCountry"]
+      player.birth_city = api_player["birthCity"]
+      player.position = api_player["position"]
+      player.foot = api_player["foot"]
+      player.image = api_player["image"]
+      player.height_cm = api_player["heightCm"]
+      player.weight_kg = api_player["weightKg"]
+      player.goals = api_player["goals"]
+      player.own_goals = api_player["ownGoals"]
+      player.penalty_goals = api_player["penaltyGoals"]
+      player.assists = api_player["assists"]
+      player.club_id = api_player["clubId"]
+      player.team_api_id = api_player["teamId"]
+      player.api_id = api_player["id"]
+      player.type = api_player["type"]
+      player.save
+    end
+  end
+
+  task :team_players => :environment do
+    players = Player.all
+    players.each do |player|
+      team_player = TeamPlayer.new
+      team_player.team_id = Team.find_by(api_id: player.team_api_id).id
+      team_player.player_id = player.id
+      team_player.save
     end
   end
 

@@ -1,5 +1,7 @@
 class Team < ActiveRecord::Base
-  belongs_to :group, primary_key: "group_letter"
+  # belongs_to :group, primary_key: "group_letter"  
+  has_many :team_players
+  has_many :players, :through => :team_players
   has_many :team_matches
   has_many :matches, :through => :team_matches
 
