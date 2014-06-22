@@ -1,7 +1,8 @@
 # Add your own tasks in files placed in lib/tasks ending in .rake,
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-# Run the following:
+# Run the following locally to reset db:
+# rake db:drop
 # rake db:migrate
 # rake populate:groups
 # rake populate:teams
@@ -9,6 +10,16 @@
 # rake populate:team_matches
 # rake populate:players
 # rake populate:time_fix
+
+# Run the following for Heroku deployment:
+# heroku run rake db:drop
+# heroku run rake db:migrate
+# heroku run rake populate:groups
+# heroku run rake populate:teams
+# heroku run rake populate:matches
+# heroku run rake populate:team_matches
+# heroku run rake populate:players
+# heroku run rake populate:time_fix
 
 require File.expand_path('../config/application', __FILE__)
 require 'net/http'
