@@ -1,0 +1,15 @@
+<div class="col-md-12">
+  <h3>Top Scorers</h3>
+  <%= render 'players/top_scorers' %>
+</div>
+
+<% @teams.each do |team| %>
+<div class="col-md-3">
+<h4><%= link_to team.name, team, id: "team-blue" %></h4>
+  <ul>
+    <% team.players.order(goals: :desc).each do |player| %>
+      <li><%= link_to player.nickname, player %> | <%= player.position %> | Goals: <%= player.goals %>
+    <% end %>
+  </ul>
+</div>
+<% end %>

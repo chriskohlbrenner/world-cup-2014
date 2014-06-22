@@ -1,0 +1,21 @@
+<% @top_scorers[0..5].each do |top_scorer| %>
+  <div class="col-md-4" id="top-scorers">
+  
+    <p><%= link_to top_scorer.nickname, top_scorer %> | <%= link_to top_scorer.team.name, top_scorer.team, id: "team-blue" %></p>
+  
+    <div class="col-md-3">
+      <a href="/players/<%= top_scorer.id %>"><img src="<%= top_scorer.image %>"/></a>
+    </div>
+  
+    <div class="col-md-9">
+      <p><%= top_scorer.position %></p>
+      <p>Goals: <%= top_scorer.goals %><p>
+    </div>
+    
+    <div class="col-md-12">
+      <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
+    </div>
+  
+  </div>
+  
+<% end %>

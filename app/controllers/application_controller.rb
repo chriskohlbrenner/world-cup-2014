@@ -12,5 +12,7 @@ class ApplicationController < ActionController::Base
     @matches.each do |match|
       @current_matches << match if match.status == "In-progress"
     end
+    @goal_max = Player.maximum("goals")
+    @top_scorers = Player.where(goals: @goal_max) + Player.where(goals: @goal_max-1)
   end
 end

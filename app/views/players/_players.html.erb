@@ -1,0 +1,9 @@
+<ul>
+<% @players.each do |player| %>
+  <li>
+    <%= link_to player.nickname, player %> | 
+    <%= player.position %> | 
+    Goals: <%= player.goals %>
+  </li>
+<% end %>
+</ul>

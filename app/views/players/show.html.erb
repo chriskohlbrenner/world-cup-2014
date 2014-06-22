@@ -1,0 +1,13 @@
+<p><img src="<%= @player.image %>"/></p>
+<p>Name: <%= @player.full_name %></p>
+<p>Team: <%= link_to @player.team.name, @player.team %></p>
+<p>Position: <%= @player.position %></p>
+<p>Goals: <%= @player.goals %></p>
+<p>Born: <%= @player.birth_city %>, <%= @player.birth_country %></p>
+<p>Birthday: <%= @player.birth_date.strftime("%m/%d/%Y") %> (age <%= @player.age %>)</p>
+<p>Foot: <%= @player.foot %></p>
+<p>Height: <%= @player.height_cm %>cm</p>
+<p>Weight: <%= @player.weight_kg %>kg</p>
+<p>Assists: <%= @player.assists %></p>
+<p>Own Goals: <%= @player.own_goals %></p>
+<p>Penalty Goals: <%= @player.penalty_goals %></p>
