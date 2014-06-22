@@ -11,7 +11,9 @@
     <% if match.winner? %>
       <%= match.winner.name %> defeats <%= match.loser.name %>, <%= match.home_score %> - <%= match.away_score %>
     <% elsif match.status == "In-progress" %>
-      <%= "Live, " + match.current_game_minutes.to_s + "'" if !match.current_game_minutes.nil? %><br><%= home_team.name %>: <%= match.home_score %> - <%= away_team.name %>: <%= match.away_score %>
+      <% response = Net::HTTP.get_response("worldcup.kimonolabs.com","/api/matches/#{match.api_id}?apikey=f4552154b80ab28c8ab1a4a1adca9ebe") %>
+      <% api_match = JSON.parse(response.body) %>
+      <%= "Live, " + api_match["currentGameMinute"].to_s + "'" if !match.current_game_minutes.nil? %><br><%= home_team.name %>: <%= api_match["homeScore"].to_s %> - <%= away_team.name %>: <%= api_match["awayScore"].to_s %>
     <% end %>
   </p>
   

@@ -175,4 +175,16 @@ namespace :update do
       puts "Updating player number #{player.id}..." if player.id % 5 == 0
     end
   end
+
+  task :match_order_id => :environment do
+    match_stats = MatchStats.json_data
+    match_stats.each do |match_stat|
+      ht = Team.find_by(name: match_stat["home_team"]["country"])
+      at = Team.find_by(name: match_stat["away_team"]["country"])
+      match = Match.where(:home_team_id => ht.api_id, :away_team_id => at.api_id).first
+      match.order_id = match_stat["match_number"]
+      match.save
+      puts "#{match.teams.first.name} vs. #{match.teams.last.name}"
+    end
+  end
 end
