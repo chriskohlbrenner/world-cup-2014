@@ -149,4 +149,19 @@ namespace :update do
       local_team.update_attributes(group_rank: api_team["groupRank"], group_points: api_team["groupPoints"], matches_played: api_team["matchesPlayed"], wins: api_team["wins"], losses: api_team["losses"], draws: api_team["draws"], goals_for: api_team["goalsFor"], goals_against: api_team["goalsAgainst"], goal_differential: api_team["goalsDiff"])
     end
   end
+
+  task :players => :environment do
+    players = Player.all
+    puts "There are #{players.count} players - this will take a minute."
+    players.each do |player|
+      response = Net::HTTP.get_response("worldcup.kimonolabs.com","/api/players/#{player.api_id}?apikey=f4552154b80ab28c8ab1a4a1adca9ebe")       
+      api_player = JSON.parse(response.body)
+      player.goals = api_player["goals"]
+      player.own_goals = api_player["ownGoals"]
+      player.penalty_goals = api_player["penaltyGoals"]
+      player.assists = api_player["assists"]
+      player.save
+      puts "Updating player number #{player.id}..." if player.id % 5 == 0
+    end
+  end
 end
