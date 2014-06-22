@@ -1,6 +1,15 @@
 # Add your own tasks in files placed in lib/tasks ending in .rake,
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
+# Run the following:
+# rake db:migrate
+# rake populate:groups
+# rake populate:teams
+# rake populate:matches
+# rake populate:team_matches
+# rake populate:players
+# rake populate:time_fix
+
 require File.expand_path('../config/application', __FILE__)
 require 'net/http'
 
