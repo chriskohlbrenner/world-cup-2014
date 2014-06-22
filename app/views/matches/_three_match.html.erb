@@ -29,5 +29,5 @@
   <% away_team = match.teams[1] %>
   <h4>Group <%= home_team.group_letter %></h4>
   <h3 id="match-date"><%= link_to match.display_time, match_path(match) %></h3>
-  <p class="score"><a href="/teams/<%= home_team.id %>"><span><img src="<%= home_team.logo %>"/><%= home_team.name %></span>: <%= match.home_score %> - <a href="/teams/<%= away_team.id %>"><span><img src="<%= away_team.logo %>"/><%= away_team.name %></span></a>: <%= match.away_score %></p>
+  <p class="score"><a href="/teams/<%= home_team.id %>"><span><img src="<%= home_team.logo %>"/><%= home_team.name %></span></a>: <%= match.home_score %> - <a href="/teams/<%= away_team.id %>"><span><img src="<%= away_team.logo %>"/><%= away_team.name %></span></a>: <%= match.away_score %></p>
 </div>

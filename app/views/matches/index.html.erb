@@ -1,5 +1,11 @@
-<h1>2014 World Cup Matches *</h1>
-<h5 class="asterisk">*The winner of each game is denoted in <span style="color: #00296d">blue</span>.</h5>
+<h1>2014 World Cup Matches</h1>
+
+
 <div class="col-md-12">
+<%= render 'application/divider' %>
+<%= render 'matches/three_match' %>
+
+<h2>All Matches *</h2>
+<h5 class="asterisk">*The winner of each game is denoted in <span style="color: #00296d">blue</span>.</h5>
 <%= render partial: "matches" %>
 </div>
