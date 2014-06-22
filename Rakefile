@@ -72,6 +72,36 @@ namespace :populate do
     end
   end
 
+  task :players => :environment do
+    response = Net::HTTP.get_response('worldcup.kimonolabs.com','/api/players?apikey=f4552154b80ab28c8ab1a4a1adca9ebe')
+    players = JSON.parse(response.body)
+    players.each do |api_player|
+      player = Player.new
+      player.first_name = api_player["firstName"]
+      player.last_name = api_player["lastName"]
+      player.nickname = api_player["nickname"]
+      player.nationality = api_player["nationality"]
+      player.age = api_player["age"]
+      player.birth_date = api_player["birthDate"]
+      player.birth_country = api_player["birthCountry"]
+      player.birth_city = api_player["birthCity"]
+      player.position = api_player["position"]
+      player.foot = api_player["foot"]
+      player.image = api_player["image"]
+      player.height_cm = api_player["heightCm"]
+      player.weight_kg = api_player["weightKg"]
+      player.goals = api_player["goals"]
+      player.own_goals = api_player["ownGoals"]
+      player.penalty_goals = api_player["penaltyGoals"]
+      player.assists = api_player["assists"]
+      player.club_id = api_player["clubId"]
+      player.team_api_id = api_player["teamId"]
+      player.api_id = api_player["id"]
+      player.type = api_player["type"]
+      player.save
+    end
+  end
+
   task :time_fix => :environment do
     matches = Match.all
     matches.each do |match|
