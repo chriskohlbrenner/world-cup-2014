@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
   def index
     @groups = Group.all
     @matches = Match.all
-    @next_match = Match.next_match
+    @next_match = Match.next_matches(2).first
     @second_match = Match.next_matches(2).last
-    @recent_match = Match.last_match
+    @recent_match = Match.previous_matches(2).first
     @two_previous_match = Match.previous_matches(2).last
     @current_matches = []
     @matches.each do |match|
