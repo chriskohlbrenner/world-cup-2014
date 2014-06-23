@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
+    gon.teams = Team.pluck(:name)
+    gon.logos = Team.all.map { |team| team.logo }
     @groups = Group.all
     @matches = Match.all
     @next_match = Match.next_matches(2).first

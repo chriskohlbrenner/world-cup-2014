@@ -2,8 +2,9 @@
 <html>
 <head>
   <title>WorldCupApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= include_gon %>
   <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
   <%= analytics_init if Rails.env.production? %>
   <%= favicon_link_tag 'logo.png' %>

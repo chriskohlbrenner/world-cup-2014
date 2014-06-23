@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require semantic-ui
+//= require twitter/typeahead
 //= require_tree .

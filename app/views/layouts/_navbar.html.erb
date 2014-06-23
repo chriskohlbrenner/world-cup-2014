@@ -29,8 +29,9 @@
         </li> -->
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <%= text_field_tag :team, nil, placeholder: "Search", class: "typeahead form-control" %>
           </div>
+          <!-- </div> -->
         </form>
       </ul>
     </div>
