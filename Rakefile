@@ -20,7 +20,8 @@
 # heroku run rake populate:matches
 # heroku run rake populate:team_matches
 # heroku run rake populate:players
-# heroku run rake populate:time_fix
+# heroku run rake populate:match_order_id
+# heroku run rake populate:match_events
 
 require File.expand_path('../config/application', __FILE__)
 require 'net/http'
@@ -230,4 +231,10 @@ namespace :update do
     end
   end
 
+  task :match_events => :environment do
+    # Need to write this
+      # Need games in progress to pull match events in realtime
+      # Need rake task to persist to database every 10?
+      # Dirty checking?
+  end  
 end

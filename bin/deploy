@@ -9,3 +9,5 @@ if !log.any? {|line| line.match(/heroku/)}
 else
   system("git push heroku master && heroku run rake update:game_results && heroku run rake update:teams && heroku run rake update:players && heroku open")
 end
+
+# ADD "&& heroku run rake update:match_events"

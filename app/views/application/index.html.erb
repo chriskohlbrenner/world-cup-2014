@@ -7,18 +7,22 @@
     <strong>Currently:</strong>
       <ul>
         <li>Index of <%= link_to "all matches, times, and results", matches_path %>.</li>
-        <li>Individual pages for each team, including results and upcoming matches.</li>
-        <li>List of <%= link_to "all teams and logos", teams_path %>.</li>
+        <li>List of <%= link_to "all teams and logos", teams_path %> and individual pages for each team, including results and upcoming matches.</li>
         <li>Data for each <%= link_to "group of four", groups_path %>.</li>
+        <li>Real-time updates to game scores.</li>
+        <li>Listing of <%= link_to "players and stats", players_path %>.</li>
       </ul>
 
     <strong>Coming soon:</strong>
       <ul>
-        <li>A <%= link_to "match listings page", matches_path %> that's not so hard to look at.</li>
-        <li>Real-time updates to games (including times, scores, stats).</li>
+        <li>Real-time updates of all game events (substitutions, goals, etc.).</li>
         <li>Statistics and analysis of individual and team performance.</li>
         <li>Search feature enabling users to easily find any information related to a given search term.</li>
-        <li>Listing of players and stats.</li>
+      </ul>
+
+    <strong>Notes:</strong>
+      <ul>
+        <li>This app is built using <a href="http://kimonolabs.com/worldcup/explorer">Kimono Labs' World Cup API</a> and <a href="http://worldcup.sfg.io/">"World Cup...in JSON"</a>. As such, it is at times limited by the quality of API data.</li>
       </ul>
   </div>
   <div class="col-md-4">
