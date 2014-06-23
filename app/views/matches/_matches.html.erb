@@ -4,7 +4,7 @@
 <% home_team = match.teams[0] %>
 <% away_team = match.teams[1] %>
 <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>
-  <h4>Group <%= home_team.group_letter %></h4>
+  <h4><%= link_to "Group " + home_team.group_letter, home_team.group %></h4>
   <h3 id="match-date"><%= link_to match.display_time, match_path(match) %> <%= match.status unless match.status == "Pre-game" %></h3>
   <p class="score">
   <% if match.winner? %>

@@ -1,6 +1,6 @@
 <h1>Group <%= @group.group_letter %></h1>
 <div class="col-md-12">
-  <table class="ui table segment">
+  <table class="table ui segment">
     <thead>
       <th>Team</th>
       <th>Games Played</th>
@@ -25,7 +25,6 @@
 </div>
 <div class="col-md-12">
   <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>  
-  <h3>Top Players in Group <%= @group.group_letter %></h3>
-    Coming soon.
-  <div class="ui horizontal divider"><i class="circular inverted trophy globe icon"></i></div>  
+  <h3>Top Goal Scorers in Group <%= @group.group_letter %></h3>
+    <%= render 'players/top_scorers' %>
 </div>

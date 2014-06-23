@@ -5,17 +5,23 @@ class Match < ActiveRecord::Base
 
   # attr_accessor :api_id, :start_time, :home_team_id, :away_team_id, :home_score, :away_score, :status, :current_game_minutes, :venue
   def self.matches_in_progress
-    games = where(status: "In-progress")
+    where(status: "In-progress")
   end
 
   def self.next_match
-    games = where(status: "Pre-game").order(:start_time)
-    games.first
+    where(status: "Pre-game").order(:start_time).first
+  end
+
+  def self.next_matches(num)
+    where(status: "Pre-game").order(:start_time).limit(num)
   end
 
   def self.last_match
-    games = where(status: "Final").order(:start_time)
-    games.last
+    where(status: "Final").order(start_time: :desc).first
+  end
+
+  def self.previous_matches(num)
+    where(status: "Final").order(start_time: :desc).limit(num)
   end
 
   def display_time

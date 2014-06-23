@@ -7,7 +7,9 @@ class ApplicationController < ActionController::Base
     @groups = Group.all
     @matches = Match.all
     @next_match = Match.next_match
+    @second_match = Match.next_matches(2).last
     @recent_match = Match.last_match
+    @two_previous_match = Match.previous_matches(2).last
     @current_matches = []
     @matches.each do |match|
       @current_matches << match if match.status == "In-progress"

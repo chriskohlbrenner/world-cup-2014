@@ -17,4 +17,8 @@ class Team < ActiveRecord::Base
       Team.find_by(api_id: next_match.home_team_id)
     end
   end
+
+  def group
+    Group.find_by(group_letter: self.group_letter)
+  end
 end

@@ -1,9 +1,16 @@
 <div class="col-md-4 index-match home">
-  <h3>Most recent match:</h3>
+  <h3>Most recent two matches:</h3>
   <% match = @recent_match %>
   <% home_team = match.teams[0] %>
   <% away_team = match.teams[1] %>
-  <h4>Group <%= home_team.group_letter %></h4>
+  <h4><a href="/groups/<%=home_team.group_letter %>">Group <%= home_team.group_letter %></a></h4>
+  <h3 id="match-date"><%= link_to match.display_time, match_path(match) %></h3>
+  <p class="score"><a href="/teams/<%= home_team.id %>" id="<%= "winner" if match.winner == home_team %>"><span class="<%= "loser" if match.loser == home_team %> <%= "winner" if match.winner == home_team %>"><img src="<%= home_team.logo %>"/><%= home_team.name %></span></a>: <%= match.home_score %> - <a href="/teams/<%= away_team.id %>" id="<%= "winner" if match.winner == away_team %>"><span class="<%= "loser" if match.loser == away_team %> <%= "winner" if match.winner == away_team %>"><img src="<%= away_team.logo %>"/><%= away_team.name %></span></a>: <%= match.away_score %></p>
+
+  <% match = @two_previous_match %>
+  <% home_team = match.teams[0] %>
+  <% away_team = match.teams[1] %>
+  <h4><%= link_to "Group " + home_team.group_letter, home_team.group %></h4>
   <h3 id="match-date"><%= link_to match.display_time, match_path(match) %></h3>
   <p class="score"><a href="/teams/<%= home_team.id %>" id="<%= "winner" if match.winner == home_team %>"><span class="<%= "loser" if match.loser == home_team %> <%= "winner" if match.winner == home_team %>"><img src="<%= home_team.logo %>"/><%= home_team.name %></span></a>: <%= match.home_score %> - <a href="/teams/<%= away_team.id %>" id="<%= "winner" if match.winner == away_team %>"><span class="<%= "loser" if match.loser == away_team %> <%= "winner" if match.winner == away_team %>"><img src="<%= away_team.logo %>"/><%= away_team.name %></span></a>: <%= match.away_score %></p>
 </div>
@@ -12,22 +19,30 @@
   <h3>Matches in progress:</h3>
   <%= "No matches are currently being played." if @current_matches.empty?  %>
   <% @current_matches.each do |match| %>
-  <% response = Net::HTTP.get_response("worldcup.kimonolabs.com","/api/matches/#{match.api_id}?apikey=f4552154b80ab28c8ab1a4a1adca9ebe") %>
-  <% api_match = JSON.parse(response.body) %>
-  <% home_team = match.teams[0] %>
-  <% away_team = match.teams[1] %>
-  <h4>Group <%= home_team.group_letter %></h4>
-  <h3 id="match-date"><a href="/matches/<%= match.id %>"><%= "Live, " + api_match["currentGameMinute"].to_s + "'" if !api_match["currentGameMinute"].nil? %></a></h3>
-  <p class="score"><a href="/teams/<%= home_team.id %>"><span><img src="<%= home_team.logo %>"/><%= home_team.name %></span></a>: <%= api_match["homeScore"].to_s %> - <a href="/teams/<%= away_team.id %>"><span><img src="<%= away_team.logo %>"/><%= away_team.name %></span></a>: <%= api_match["awayScore"].to_s %></p>
+    <% response = Net::HTTP.get_response("worldcup.kimonolabs.com","/api/matches/#{match.api_id}?apikey=f4552154b80ab28c8ab1a4a1adca9ebe") %>
+    <% api_match = JSON.parse(response.body) %>
+    <% home_team = match.teams[0] %>
+    <% away_team = match.teams[1] %>
+    
+    <h4><a href="/groups/<%=home_team.group_letter %>">Group <%= home_team.group_letter %></a></h4>
+    <h3 id="match-date"><a href="/matches/<%= match.id %>">Live<%= ", " + api_match["currentGameMinute"].to_s + "'" if !api_match["currentGameMinute"].nil? %></a></h3>
+    <p class="score"><a href="/teams/<%= home_team.id %>"><span><img src="<%= home_team.logo %>"/><%= home_team.name %></span></a>: <%= api_match["homeScore"].to_s %> - <a href="/teams/<%= away_team.id %>"><span><img src="<%= away_team.logo %>"/><%= away_team.name %></span></a>: <%= api_match["awayScore"].to_s %></p>
   <% end  %>
 </div>
 
 <div class="col-md-4 index-match home">
-  <h3>Next match:</h3>
+  <h3>Next two matches:</h3>
   <% match = @next_match %>
   <% home_team = match.teams[0] %>
   <% away_team = match.teams[1] %>
-  <h4>Group <%= home_team.group_letter %></h4>
+  <h4><a href="/groups/<%=home_team.group_letter %>">Group <%= home_team.group_letter %></a></h4>
+  <h3 id="match-date"><%= link_to match.display_time, match_path(match) %></h3>
+  <p class="score"><a href="/teams/<%= home_team.id %>"><span><img src="<%= home_team.logo %>"/><%= home_team.name %></span></a>: <%= match.home_score %> - <a href="/teams/<%= away_team.id %>"><span><img src="<%= away_team.logo %>"/><%= away_team.name %></span></a>: <%= match.away_score %></p>
+
+  <% match = @second_match %>
+  <% home_team = match.teams[0] %>
+  <% away_team = match.teams[1] %>
+  <h4><%= link_to "Group " + home_team.group_letter, home_team.group %></h4>
   <h3 id="match-date"><%= link_to match.display_time, match_path(match) %></h3>
   <p class="score"><a href="/teams/<%= home_team.id %>"><span><img src="<%= home_team.logo %>"/><%= home_team.name %></span></a>: <%= match.home_score %> - <a href="/teams/<%= away_team.id %>"><span><img src="<%= away_team.logo %>"/><%= away_team.name %></span></a>: <%= match.away_score %></p>
 </div>
