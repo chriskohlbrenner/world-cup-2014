@@ -4,7 +4,7 @@
   <%= link_to team_path(team) do %>
     <div class="col-sm-3 team-block midnight">
       <h3><%= team.name %></h3>
-      <span style="color: white">(<%= team.wins %>-<%= team.losses %>-<%= team.draws %>, <%= team.group_rank.ordinalize %> in Group <%= team.group %>)</span><br>
+      <span style="color: white">(<%= team.wins %>-<%= team.losses %>-<%= team.draws %>, <%= team.group_rank.ordinalize %> in Group <%= team.group_letter %>)</span><br>
       <img src="<%= team.logo %>"/>
       <br><br>
     </div>

@@ -1,10 +1,7 @@
 <% home_team = @match.teams[0] %>
 <% away_team = @match.teams[1] %>
 <% match = @match %>
-
-<div class="col-md-10" id="match">
-  <div class="hr"></div>
-  <h4>Group <%= home_team.group %></h4>
+  <h4>Group <%= home_team.group_letter %></h4>
   <h3><%= link_to match.display_time, match_path(match) %> (<%= match.status %>)</h3>
   <%= match.venue %>
   <p>
@@ -14,26 +11,39 @@
       <% response = Net::HTTP.get_response("worldcup.kimonolabs.com","/api/matches/#{match.api_id}?apikey=f4552154b80ab28c8ab1a4a1adca9ebe") %>
       <% api_match = JSON.parse(response.body) %>
       <%= "Live, " + api_match["currentGameMinute"].to_s + "'" if !match.current_game_minutes.nil? %><br><%= home_team.name %>: <%= api_match["homeScore"].to_s %> - <%= away_team.name %>: <%= api_match["awayScore"].to_s %>
+    <% else %>
+      <%= home_team.name %>: <%= match.home_score %> - <%= away_team.name %>: <%= match.away_score %> (Draw)
     <% end %>
   </p>
-  
-  <div class="col-md-8">
+
+<div class="col-md-6">
+  <div class="team-block">
     <%= link_to team_path(home_team) do %>
-      <div class="col-md-4 left team-block">
-          <h3><%= home_team.name %></h3>
-          <img src="<%= home_team.logo %>"/>
-      </div>
+      <h3><%= home_team.name %></h3>
+      <img src="<%= home_team.logo %>"/>
     <% end %>
-    <%= link_to team_path(away_team) do %>
-      <div class="col-md-4 right team-block">
-          <h3><%= away_team.name %></h3>
-          <img src="<%= away_team.logo %>"/>
-      </div>
-    <% end %>
+  <p id="home-score"><%= match.home_score %></p>
   </div>
+
+  <ul>
+    <% @home_match_stats.each do |match_stat| %>
+      <li><%= match_stat.minute %>': <%= match_stat.display %></li>
+    <% end %>
+  </ul>
 </div>
-<div class="col-md-10">
-  <div class="hr"></div>
-  <h4>Game Stats:</h4>
-      N/A
+
+<div class="col-md-6">
+  <div class="team-block">
+    <%= link_to team_path(away_team) do %>  
+      <h3><%= away_team.name %></h3>
+      <img src="<%= away_team.logo %>"/>
+    <% end %>
+  <p id="away-score"><%= match.away_score %></p>
+  </div>
+    
+    <ul>
+      <% @away_match_stats.each do |match_stat| %>
+        <li><%= match_stat.minute %>': <%= match_stat.display %></li>
+      <% end %>
+    </ul>
 </div>

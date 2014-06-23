@@ -5,7 +5,7 @@
 
   <div class="col-md-4">
     <h1><%= @team.name %></h1>
-    <p>(<%= @team.wins %>-<%= @team.losses %>-<%= @team.draws %>), ranked <%= (@team.group_rank).ordinalize %> in Group <%= @team.group_letter %>.</p>
+    <p>(<%= @team.wins %>-<%= @team.losses %>-<%= @team.draws %>), ranked <%= (@team.group_rank).ordinalize %> in <a href="/groups/<%= @team.group_letter %>">Group <%= @team.group_letter %></a>.</p>
     <p>Next match: <%= link_to @team.next_match.display_time, @team.next_match %> vs. <%= link_to @team.next_opponent.name, team_path(@team.next_opponent) %></p>
   </div>
   <div class="col-md-6">

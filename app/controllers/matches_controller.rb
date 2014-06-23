@@ -11,6 +11,8 @@ class MatchesController < ApplicationController
 
   def show
     @match = Match.find(params[:id])
+    @home_match_stats = @match.match_stats.where(home_away: "home").order(:minute)
+    @away_match_stats = @match.match_stats.where(home_away: "away").order(:minute)
   end
 
 end
