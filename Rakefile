@@ -9,7 +9,8 @@
 # rake populate:matches
 # rake populate:team_matches
 # rake populate:players
-# rake populate:time_fix
+# rake populate:match_order_id
+# rake populate:match_events
 
 # Run the following for Heroku deployment:
 # heroku run rake db:drop
@@ -140,6 +141,59 @@ namespace :populate do
       match.save
     end
   end
+
+  # Set match order ids for group play games, to pull in-game stats from http://worldcup.sfg.io/matches
+  task :match_order_id => :environment do
+    match_stats = MatchStat.json_data
+    match_stats[0..47].each do |match_stat|
+      ht = Team.find_by(name: match_stat["home_team"]["country"])
+      at = Team.find_by(name: match_stat["away_team"]["country"])
+      if (match_stat["home_team"]["country"] == "Ivory Coast")
+        ht = Team.find_by(name: "Côte d'Ivoire")
+      elsif (match_stat["away_team"]["country"] == "Ivory Coast")
+        at = Team.find_by(name: "Côte d'Ivoire")
+      elsif (match_stat["home_team"]["country"] == "USA")
+        ht = Team.find_by(name: "United States")
+      elsif (match_stat["away_team"]["country"] == "USA")
+        at = Team.find_by(name: "United States")
+      elsif (match_stat["home_team"]["country"] == "Bosnia and Herzegovina")
+        ht = Team.find_by(name: "Bosnia-Herzegovina")
+      elsif (match_stat["away_team"]["country"] == "Bosnia and Herzegovina")
+        at = Team.find_by(name: "Bosnia-Herzegovina")
+      end
+        match = Match.where(:home_team_id => ht.api_id, :away_team_id => at.api_id).first
+        match.order_id = match_stat["match_number"]
+        match.save
+      puts "#{match.teams.first.name} vs. #{match.teams.last.name}"
+    end
+  end
+
+  task :match_events => :environment do
+    matches = Match.all
+    match_stats = MatchStat.json_data
+    matches.each do |match|
+      match_home_events = match_stats[match.order_id-1]["home_team_events"]
+      match_home_events.each do |match_stat|
+        event = MatchStat.new
+        event.event_type = match_stat["type_of_event"]
+        event.player = match_stat["player"]
+        event.minute = match_stat["time"]
+        event.home_away = "home"
+        event.match_id = match.id
+        event.save
+      end
+      match_away_events = match_stats[match.order_id-1]["away_team_events"]
+      match_away_events.each do |match_stat|
+        event = MatchStat.new
+        event.event_type = match_stat["type_of_event"]
+        event.player = match_stat["player"]
+        event.minute = match_stat["time"]
+        event.home_away = "away"
+        event.match_id = match.id
+        event.save
+      end
+    end
+  end  
 end
 
 namespace :update do
@@ -176,15 +230,4 @@ namespace :update do
     end
   end
 
-  task :match_order_id => :environment do
-    match_stats = MatchStats.json_data
-    match_stats.each do |match_stat|
-      ht = Team.find_by(name: match_stat["home_team"]["country"])
-      at = Team.find_by(name: match_stat["away_team"]["country"])
-      match = Match.where(:home_team_id => ht.api_id, :away_team_id => at.api_id).first
-      match.order_id = match_stat["match_number"]
-      match.save
-      puts "#{match.teams.first.name} vs. #{match.teams.last.name}"
-    end
-  end
 end
