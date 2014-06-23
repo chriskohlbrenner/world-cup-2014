@@ -232,6 +232,31 @@ namespace :update do
   end
 
   task :match_events => :environment do
+    MatchStat.destroy_all
+    matches = Match.all
+    match_stats = MatchStat.json_data
+    matches.each do |match|
+      match_home_events = match_stats[match.order_id-1]["home_team_events"]
+      match_home_events.each do |match_stat|
+        event = MatchStat.new
+        event.event_type = match_stat["type_of_event"]
+        event.player = match_stat["player"]
+        event.minute = match_stat["time"]
+        event.home_away = "home"
+        event.match_id = match.id
+        event.save
+      end
+      match_away_events = match_stats[match.order_id-1]["away_team_events"]
+      match_away_events.each do |match_stat|
+        event = MatchStat.new
+        event.event_type = match_stat["type_of_event"]
+        event.player = match_stat["player"]
+        event.minute = match_stat["time"]
+        event.home_away = "away"
+        event.match_id = match.id
+        event.save
+      end
+    end
     # Need to write this
       # Need games in progress to pull match events in realtime
       # Need rake task to persist to database every 10?
