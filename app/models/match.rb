@@ -49,4 +49,8 @@ class Match < ActiveRecord::Base
       teams[1]
     end
   end
+
+  def goals
+    match_stats.where(event_type: "goal" || "goal-own" || "goal-penalty")
+  end
 end

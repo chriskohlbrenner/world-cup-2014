@@ -25,11 +25,11 @@ class MatchStat < ActiveRecord::Base
   def display
     case event_type
     when "goal"
-      "Goal! Scored by #{player}."
+      "Goal scored by #{player}."
     when "goal-penalty"
-      "Goal! #{player} scored on a PK."
+      "Goal. #{player} scored on a PK."
     when "goal-own"
-      "Goal #{opponent}! #{self.player} scored an own goal."
+      "Goal #{opponent}. #{self.player} scored an own goal."
     when "yellow-card"
       "Foul on #{player}--given a yellow card."
     when "red-card"
