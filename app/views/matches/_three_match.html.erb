@@ -1,18 +1,18 @@
 <div class="col-md-4 index-match home">
   <h3>Most recent two matches:</h3>
   <% match = @recent_match %>
-  <% home_team = match.teams[0] %>
-  <% away_team = match.teams[1] %>
-  <h4><a href="/groups/<%=home_team.group_letter %>">Group <%= home_team.group_letter %></a></h4>
+  <% home_team_one = match.teams[0] %>
+  <% away_team_one = match.teams[1] %>
+  <h4><a href="/groups/<%=home_team_one.group_letter %>">Group <%= home_team_one.group_letter %></a></h4>
   <h3 id="match-date"><%= link_to match.display_time, match_path(match) %></h3>
-  <p class="score"><a href="/teams/<%= home_team.id %>" id="<%= "winner" if match.winner == home_team %>"><span class="<%= "loser" if match.loser == home_team %> <%= "winner" if match.winner == home_team %>"><img src="<%= home_team.logo %>"/><%= home_team.name %></span></a>: <%= match.home_score %> - <a href="/teams/<%= away_team.id %>" id="<%= "winner" if match.winner == away_team %>"><span class="<%= "loser" if match.loser == away_team %> <%= "winner" if match.winner == away_team %>"><img src="<%= away_team.logo %>"/><%= away_team.name %></span></a>: <%= match.away_score %></p>
+  <p class="score"><a href="/teams/<%= home_team_one.id %>" id="<%= "winner" if match.winner == home_team_one %>"><span class="<%= "loser" if match.loser == home_team_one %> <%= "winner" if match.winner == home_team_one %>"><img src="<%= home_team_one.logo %>"/><%= home_team_one.name %></span></a>: <%= match.home_score %> - <a href="/teams/<%= away_team_one.id %>" id="<%= "winner" if match.winner == away_team_one %>"><span class="<%= "loser" if match.loser == away_team_one %> <%= "winner" if match.winner == away_team_one %>"><img src="<%= away_team_one.logo %>"/><%= away_team_one.name %></span></a>: <%= match.away_score %></p>
 
   <% match_two = @two_previous_match %>
-  <% home_team = match_two.teams[0] %>
-  <% away_team = match_two.teams[1] %>
-  <h4><%= link_to "Group " + home_team.group_letter, home_team.group %></h4>
+  <% home_team_two = match_two.teams[0] %>
+  <% away_team_two = match_two.teams[1] %>
+  <h4><%= link_to "Group " + home_team_two.group_letter, home_team_two.group %></h4>
   <h3 id="match-date"><%= link_to match_two.display_time, match_path(match_two) %></h3>
-  <p class="score"><a href="/teams/<%= home_team.id %>" id="<%= "winner" if match_two.winner == home_team %>"><span class="<%= "loser" if match_two.loser == home_team %> <%= "winner" if match_two.winner == home_team %>"><img src="<%= home_team.logo %>"/><%= home_team.name %></span></a>: <%= match_two.home_score %> - <a href="/teams/<%= away_team.id %>" id="<%= "winner" if match_two.winner == away_team %>"><span class="<%= "loser" if match_two.loser == away_team %> <%= "winner" if match_two.winner == away_team %>"><img src="<%= away_team.logo %>"/><%= away_team.name %></span></a>: <%= match_two.away_score %></p>
+  <p class="score"><a href="/teams/<%= home_team_two.id %>" id="<%= "winner" if match_two.winner == home_team_two %>"><span class="<%= "loser" if match_two.loser == home_team_two %> <%= "winner" if match_two.winner == home_team_two %>"><img src="<%= home_team_two.logo %>"/><%= home_team_two.name %></span></a>: <%= match_two.home_score %> - <a href="/teams/<%= away_team_two.id %>" id="<%= "winner" if match_two.winner == away_team_two %>"><span class="<%= "loser" if match_two.loser == away_team_two %> <%= "winner" if match_two.winner == away_team_two %>"><img src="<%= away_team_two.logo %>"/><%= away_team_two.name %></span></a>: <%= match_two.away_score %></p>
 </div>
 
 <div class="col-md-4 index-match home">
@@ -33,16 +33,16 @@
 <div class="col-md-4 index-match home">
   <h3>Next two matches:</h3>
   <% match = @next_match %>
-  <% home_team = match.teams[0] %>
-  <% away_team = match.teams[1] %>
-  <h4><a href="/groups/<%=home_team.group_letter %>">Group <%= home_team.group_letter %></a></h4>
+  <% home_team_five = match.teams[0] %>
+  <% away_team_five = match.teams[1] %>
+  <h4><a href="/groups/<%=home_team_five.group_letter %>">Group <%= home_team_five.group_letter %></a></h4>
   <h3 id="match-date"><%= link_to match.display_time, match_path(match) %></h3>
-  <p class="score"><a href="/teams/<%= home_team.id %>"><span><img src="<%= home_team.logo %>"/><%= home_team.name %></span></a>: <%= match.home_score %> - <a href="/teams/<%= away_team.id %>"><span><img src="<%= away_team.logo %>"/><%= away_team.name %></span></a>: <%= match.away_score %></p>
+  <p class="score"><a href="/teams/<%= home_team_five.id %>"><span><img src="<%= home_team_five.logo %>"/><%= home_team_five.name %></span></a>: <%= match.home_score %> - <a href="/teams/<%= away_team_five.id %>"><span><img src="<%= away_team_five.logo %>"/><%= away_team_five.name %></span></a>: <%= match.away_score %></p>
 
   <% match_two = @second_match %>
-  <% home_team = match_two.teams[0] %>
-  <% away_team = match_two.teams[1] %>
-  <h4><%= link_to "Group " + home_team.group_letter, home_team.group %></h4>
+  <% home_team_six = match_two.teams[0] %>
+  <% away_team_six = match_two.teams[1] %>
+  <h4><%= link_to "Group " + home_team_six.group_letter, home_team_six.group %></h4>
   <h3 id="match-date"><%= link_to match_two.display_time, match_path(match_two) %></h3>
-  <p class="score"><a href="/teams/<%= home_team.id %>"><span><img src="<%= home_team.logo %>"/><%= home_team.name %></span></a>: <%= match_two.home_score %> - <a href="/teams/<%= away_team.id %>"><span><img src="<%= away_team.logo %>"/><%= away_team.name %></span></a>: <%= match_two.away_score %></p>
+  <p class="score"><a href="/teams/<%= home_team_six.id %>"><span><img src="<%= home_team_six.logo %>"/><%= home_team_six.name %></span></a>: <%= match_two.home_score %> - <a href="/teams/<%= away_team_six.id %>"><span><img src="<%= away_team_six.logo %>"/><%= away_team_six.name %></span></a>: <%= match_two.away_score %></p>
 </div>
