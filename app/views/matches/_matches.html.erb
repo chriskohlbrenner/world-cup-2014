@@ -10,8 +10,8 @@
   <% if match.winner? %>
     <a href="/teams/<%= match.winner.id %>" id="winner"><span class="winner"><img src="<%= match.winner.logo %>"/><%= match.winner.name %></span></a> defeats <a href="/teams/<%= match.loser.id %>" id="loser"><span class="loser"><img src="<%= match.loser.logo %>"/><%= match.loser.name %></span></a>, <%= match.home_score %> - <%= match.away_score %>
     <ul>
-    <% match.goals.each do |goal| %>
-      <li>Goal <%= goal.team %> - <%= goal.display %></li>
+    <% match.goals.order(:minute).each do |goal| %>
+      <li><%= goal.minute %>' - <%= goal.display %> (<%= goal.team %>)</li>
     <% end %>
     </ul>
   <% elsif match.status == "In-progress" %>

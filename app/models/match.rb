@@ -51,6 +51,7 @@ class Match < ActiveRecord::Base
   end
 
   def goals
-    match_stats.where(event_type: "goal" || "goal-own" || "goal-penalty")
+    match_stats.where('(event_type= ?) OR (event_type= ?) OR (event_type= ?)', "goal", "goal-own", "goal-penalty")
+
   end
 end
