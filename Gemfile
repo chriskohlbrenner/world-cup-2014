@@ -52,11 +52,11 @@ group :production do
   gem "pg"
   gem "google-analytics-rails"
   gem "rails_12factor"
+  gem 'newrelic_rpm'
 end
 
 gem "bootstrap-sass", "~> 3.1.1"
 gem "airbrake"
 gem 'semantic-ui-sass', '~> 0.16.1.0'
-gem 'newrelic_rpm'
 gem 'gon'
 gem 'twitter-typeahead-rails'
