@@ -28,7 +28,7 @@ $(document).ready(function() {
     templates: {
       empty: [
         '<div class="empty-message">',
-        'No team matches found. Enter an email instead!',
+        'No team matches found.',
         '</div>'
       ].join('\n'),
       suggestion: function(team){

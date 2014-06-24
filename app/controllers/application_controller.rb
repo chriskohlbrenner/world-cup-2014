@@ -19,4 +19,9 @@ class ApplicationController < ActionController::Base
     @goal_max = Player.maximum("goals")
     @top_scorers = Player.where(goals: @goal_max) + Player.where(goals: @goal_max-1)
   end
+
+  def search
+    binding.pry
+  end
+
 end
