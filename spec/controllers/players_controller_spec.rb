@@ -1,5 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe PlayersController, :type => :controller do
-
+describe PlayersController do
+  describe 'GET show' do
+    it 'renders the show template' do
+      player = Player.create
+      get(:show, {'id' => "1"})
+      expect(response).to render_template('show')
+    end
+  end
 end
