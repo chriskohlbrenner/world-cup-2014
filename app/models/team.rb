@@ -21,4 +21,12 @@ class Team < ActiveRecord::Base
   def group
     Group.find_by(group_letter: self.group_letter)
   end
+
+  def avg_goals_against
+    (goals_against.to_f / matches_played).round(2)
+  end
+
+  def avg_goals_for
+    (goals_for.to_f / matches_played).round(2)
+  end
 end

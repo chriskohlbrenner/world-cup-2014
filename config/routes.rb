@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'groups/:letter' => 'groups#show', :as => "group"
   get 'players' => 'players#index'
   get 'players/:id' => 'players#show', :as => "player"
+  get 'd3' => 'd3#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
