@@ -10,6 +10,6 @@ FactoryGirl.define do
     away_score 2
     status "Final"
     venue "Arena Amazônia (Manaus, Amazonas)"
-    sequence(:order_id) { |n| n }
+    sequence(:order_id) { |n| n }  
   end
 end
