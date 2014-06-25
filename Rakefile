@@ -163,9 +163,14 @@ namespace :populate do
         at = Team.find_by(name: "Bosnia-Herzegovina")
       end
         match = Match.where(:home_team_id => ht.api_id, :away_team_id => at.api_id).first
-        match.order_id = match_stat["match_number"]
-        match.save
-      puts "#{match.teams.first.name} vs. #{match.teams.last.name}"
+        if !match.nil?
+          match.order_id = match_stat["match_number"]
+          match.save
+          puts "#{match.teams.first.name} vs. #{match.teams.last.name}"
+        else
+          puts "Skipping #{ht} vs #{at}."
+        end
+      
     end
   end
 
@@ -173,25 +178,27 @@ namespace :populate do
     matches = Match.all
     match_stats = MatchStat.json_data
     matches.each do |match|
-      match_home_events = match_stats[match.order_id-1]["home_team_events"]
-      match_home_events.each do |match_stat|
-        event = MatchStat.new
-        event.event_type = match_stat["type_of_event"]
-        event.player = match_stat["player"]
-        event.minute = match_stat["time"]
-        event.home_away = "home"
-        event.match_id = match.id
-        event.save
-      end
-      match_away_events = match_stats[match.order_id-1]["away_team_events"]
-      match_away_events.each do |match_stat|
-        event = MatchStat.new
-        event.event_type = match_stat["type_of_event"]
-        event.player = match_stat["player"]
-        event.minute = match_stat["time"]
-        event.home_away = "away"
-        event.match_id = match.id
-        event.save
+      if !match.order_id.nil? 
+        match_home_events = match_stats[match.order_id-1]["home_team_events"]
+        match_home_events.each do |match_stat|
+          event = MatchStat.new
+          event.event_type = match_stat["type_of_event"]
+          event.player = match_stat["player"]
+          event.minute = match_stat["time"]
+          event.home_away = "home"
+          event.match_id = match.id
+          event.save
+        end
+        match_away_events = match_stats[match.order_id-1]["away_team_events"]
+        match_away_events.each do |match_stat|
+          event = MatchStat.new
+          event.event_type = match_stat["type_of_event"]
+          event.player = match_stat["player"]
+          event.minute = match_stat["time"]
+          event.home_away = "away"
+          event.match_id = match.id
+          event.save
+        end
       end
     end
   end  
