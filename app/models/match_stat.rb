@@ -3,7 +3,12 @@ class MatchStat < ActiveRecord::Base
 
   def self.json_data
     response = Net::HTTP.get_response('worldcup.sfg.io','/matches')
-    JSON.parse(response.body)
+    if response.kind_of?(Net::HTTPSuccess)
+      JSON.parse(response.body)
+    else
+      puts "API is down."
+      false
+    end
   end
 
   def team

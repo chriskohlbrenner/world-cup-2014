@@ -26,8 +26,14 @@
   </div>
 
   <ul>
-    <% @home_match_stats.each do |match_stat| %>
-      <li><%= match_stat.minute %>': <%= match_stat.display %></li>
+    <% if match.status == "Final" %>
+      <% @home_match_stats.each do |match_stat| %>
+        <li><%= match_stat.minute %>': <%= match_stat.display %></li>
+      <% end %>
+    <% elsif match.status == "In-progress" %>
+      <% match.current_match_stats("home").each do |current_match_stat| %>
+        <li><%= current_match_stat["time"] %>': <%= current_match_stat["type_of_event"].capitalize %> - <%= current_match_stat["player"] %></li>
+      <% end %>
     <% end %>
   </ul>
 </div>
@@ -41,9 +47,15 @@
   <p id="away-score"><%= match.away_score %></p>
   </div>
     
-    <ul>
-      <% @away_match_stats.each do |match_stat| %>
+  <ul>
+    <% if match.status == "Final" %>
+      <% @home_match_stats.each do |match_stat| %>
         <li><%= match_stat.minute %>': <%= match_stat.display %></li>
       <% end %>
-    </ul>
+    <% elsif match.status == "In-progress" %>
+      <% match.current_match_stats("away").each do |current_match_stat| %>
+        <li><%= current_match_stat["time"] %>': <%= current_match_stat["type_of_event"].capitalize %> - <%= current_match_stat["player"] %></li>
+      <% end %>
+    <% end %>
+  </ul>
 </div>

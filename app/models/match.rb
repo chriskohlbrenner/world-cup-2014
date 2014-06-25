@@ -52,6 +52,11 @@ class Match < ActiveRecord::Base
 
   def goals
     match_stats.where('(event_type= ?) OR (event_type= ?) OR (event_type= ?)', "goal", "goal-own", "goal-penalty")
+  end
 
+  def current_match_stats(home_or_away)
+    if (order_id && MatchStat.json_data)
+      MatchStat.json_data[self.order_id-1]["#{home_or_away}_team_events"]
+    end
   end
 end
