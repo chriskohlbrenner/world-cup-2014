@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+  - 2.1.0
+env:
+  - DB=postgresql
+before_script:
+  - psql -c 'create database bitcoin_messenger_test' -U postgres
+script:
+  - RAILS_ENV=test bundle exec rake --trace db:migrate spec
+cache: bundler
