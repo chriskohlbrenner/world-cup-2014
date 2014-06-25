@@ -1,10 +1,10 @@
 class MatchesController < ApplicationController
   def index
     @matches = Match.all.order(:start_time)
-    @next_match = Match.next_matches(2).first
-    @second_match = Match.next_matches(2).last
-    @recent_match = Match.previous_matches(2).first
-    @two_previous_match = Match.previous_matches(2).last
+    @next_match = Match.next_matches(2)[0]
+    @second_match = Match.next_matches(2)[1]
+    @recent_match = Match.previous_matches(2)[0]
+    @two_previous_match = Match.previous_matches(2)[1]
     @current_matches = []
     @matches.each do |match|
       @current_matches << match if match.status == "In-progress"
