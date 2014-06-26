@@ -1,4 +1,5 @@
 # WorldCupApp
+[![Build Status](https://travis-ci.org/chriskohlbrenner/world-cup-2014.png)](https://travis-ci.org/chriskohlbrenner/world-cup-2014)
 
 ## Description
 
@@ -6,7 +7,10 @@ Tracker for the 2014 World Cup, built using the ["(un)official World Cup API"](w
 
 ## Screenshots
 
-Coming soon.
+[![](/app/assets/images/screenshots/wc-home.png "Homepage")](http://world-cup-14.herokuapp.com)
+[![](/app/assets/images/screenshots/wc-group-scorers.png "Groups/Scorers")](http://world-cup-14.herokuapp.com)
+[![](/app/assets/images/screenshots/wc-teams.png "Teams")](http://world-cup-14.herokuapp.com/teams)
+[![](/app/assets/images/screenshots/wc-analysis.png "Analysis")](http://world-cup-14.herokuapp.com/d3)
 
 ## Background
 
